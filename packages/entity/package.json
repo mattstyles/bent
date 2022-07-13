@@ -1,0 +1,17 @@
+{
+  "name": "@usul/entity",
+  "version": "0.0.0",
+  "description": "Browser Entity",
+  "main": "./src/index.tsx",
+  "types": "./src/index.tsx",
+  "license": "MIT",
+  "scripts": {
+    "lint": "TIMING=1 eslint src --ext ts,tsx"
+  },
+  "devDependencies": {
+    "config": "workspace:*",
+    "tsconfig": "workspace:*",
+    "typescript": "^4.5.3"
+  },
+  "dependencies": {}
+}

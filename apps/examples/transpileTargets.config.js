@@ -8,6 +8,6 @@ module.exports = [
   '@usul/entity',
   '@usul/store',
   '@usul/universe',
-  // '@usul/client',
+  '@usul/client',
   // '@usul/make
 ]

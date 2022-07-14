@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@usul/core": "workspace:*",
+    "@usul/client": "workspace:*",
     "@usul/driver": "workspace:*",
     "@usul/entity": "workspace:*",
     "@usul/store": "workspace:*",
+    "@usul/universe": "workspace:*",
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",

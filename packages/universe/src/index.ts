@@ -4,7 +4,7 @@ import {Bent} from '@usul/entity'
 import {Store} from '@usul/store'
 
 type Index<T> = keyof T
-type UniverseSchema<T, S extends Store> = Record<Index<T>, S>
+export type UniverseSchema<T, S extends Store> = Record<Index<T>, S>
 
 export abstract class Universe<
   B extends Bent,
@@ -59,7 +59,7 @@ export abstract class Universe<
     // @TODO use keygen to attach id
     const id = Math.random().toString(36).slice(2)
     const ent = new Bent({
-      id,
+      _id: id,
       ...data,
     })
     await ent.gen()

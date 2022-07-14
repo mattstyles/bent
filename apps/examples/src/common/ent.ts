@@ -2,6 +2,8 @@ import type {IEntityData} from '@usul/core'
 import {Bent} from '@usul/entity'
 import {MemoryDriver} from '@usul/driver'
 import {Store} from '@usul/store'
+import {Universe} from '@usul/universe'
+import {Client} from '@usul/client'
 
 // Data type handled by ent
 export interface PersonData extends IEntityData {
@@ -26,3 +28,31 @@ export class PersonStore extends Store<PersonBent> {
   Ent = PersonBent
 }
 export const personStore = new PersonStore()
+
+// Universe for holding ents and stores, just one here
+type UniverseSchema = {
+  personStore: PersonStore
+}
+type UniverseBents = PersonBent
+type UniverseStoreTypes = PersonStore
+
+export class MainUniverse extends Universe<
+  UniverseBents,
+  UniverseStoreTypes,
+  UniverseSchema
+> {
+  PersonBent = PersonBent
+}
+export const universe = new MainUniverse({
+  personStore: personStore,
+})
+
+// Client for interacting with universe
+export class MainClient extends Client<
+  UniverseBents,
+  UniverseStoreTypes,
+  UniverseSchema
+> {
+  universe = universe
+}
+export const client = new MainClient()

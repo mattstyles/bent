@@ -19,10 +19,12 @@ importers:
     specifiers:
       '@types/node': ^18.0.3
       '@types/react': 18.0.15
+      '@usul/client': workspace:*
       '@usul/core': workspace:*
       '@usul/driver': workspace:*
       '@usul/entity': workspace:*
       '@usul/store': workspace:*
+      '@usul/universe': workspace:*
       config: workspace:*
       eslint: 8.19.0
       next: 12.2.2
@@ -34,10 +36,12 @@ importers:
       typescript: ^4.7.4
       ui: workspace:*
     dependencies:
+      '@usul/client': link:../../packages/client
       '@usul/core': link:../../packages/core
       '@usul/driver': link:../../packages/driver
       '@usul/entity': link:../../packages/entity
       '@usul/store': link:../../packages/store
+      '@usul/universe': link:../../packages/universe
       next: 12.2.2_react-dom@18.2.0+react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -50,6 +54,27 @@ importers:
       eslint: 8.19.0
       next-transpile-modules: 9.0.0
       tsconfig: link:../../packages/tsconfig
+      typescript: 4.7.4
+
+  packages/client:
+    specifiers:
+      '@usul/core': workspace:*
+      '@usul/driver': workspace:*
+      '@usul/entity': workspace:*
+      '@usul/store': workspace:*
+      '@usul/universe': workspace:*
+      config: workspace:*
+      tsconfig: workspace:*
+      typescript: ^4.5.3
+    dependencies:
+      '@usul/core': link:../core
+      '@usul/driver': link:../driver
+      '@usul/entity': link:../entity
+      '@usul/store': link:../store
+      '@usul/universe': link:../universe
+    devDependencies:
+      config: link:../config
+      tsconfig: link:../tsconfig
       typescript: 4.7.4
 
   packages/config:
@@ -168,16 +193,12 @@ importers:
 
   packages/universe:
     specifiers:
-      '@usul/core': workspace:*
-      '@usul/driver': workspace:*
       '@usul/entity': workspace:*
       '@usul/store': workspace:*
       config: workspace:*
       tsconfig: workspace:*
       typescript: ^4.5.3
     dependencies:
-      '@usul/core': link:../core
-      '@usul/driver': link:../driver
       '@usul/entity': link:../entity
       '@usul/store': link:../store
     devDependencies:

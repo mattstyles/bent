@@ -8,10 +8,7 @@ export default function Home() {
     <Container as='main' padding='large'>
       <Head>
         <title>UIE Challenges</title>
-        <meta
-          name='description'
-          content='Examples of the bent framework'
-        />
+        <meta name='description' content='Examples of the bent framework' />
       </Head>
       <Stack gap='small'>
         {links.map(({href, title}) => {
@@ -28,4 +25,5 @@ export default function Home() {
 
 const links: Array<{href: string; title: string}> = [
   {href: '/basic', title: 'Basic'},
+  {href: '/client', title: 'Client'},
 ]

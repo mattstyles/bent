@@ -1,5 +1,5 @@
 import {useEffect, useState, useCallback} from 'react'
-import {GetEntityData} from '@usul/entity'
+import {GetEntityData, Bent} from '@usul/entity'
 
 import {Stack, Screen, Container, Button} from 'ui'
 import {PersonBent, client} from 'common/ent'
@@ -34,6 +34,7 @@ export default function Subscription() {
     })
     return dispose
   }, [])
+  const customHook = useBent<PersonBent>(ent)
   const onUpdate = useCallback(async () => {
     await ent.update({
       name: 'randomEntName ' + Math.random().toString(36).slice(2),
@@ -45,9 +46,32 @@ export default function Subscription() {
       <Container as='main' padding='large'>
         <Stack>
           <PersonDisplay data={data} />
+          <PersonDisplay data={customHook.data} />
           <Button onClick={() => onUpdate()}>Update</Button>
         </Stack>
       </Container>
     </Screen>
   )
+}
+
+type useBentOutput<B extends Bent> = {
+  ent: B
+  data: GetEntityData<B>
+}
+function useBent<B extends Bent>(ent: B | null): useBentOutput<B> {
+  const [data, setData] = useState(ent?.data ?? null)
+  useEffect(() => {
+    if (ent == null) {
+      return
+    }
+    setData(ent.data)
+    const subscription = ent.subscribe((ent) => {
+      setData(ent.data)
+    })
+    return subscription.unsubscribe
+  }, [ent])
+  return {
+    ent,
+    data,
+  }
 }

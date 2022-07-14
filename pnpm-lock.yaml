@@ -22,6 +22,7 @@ importers:
       '@usul/core': workspace:*
       '@usul/driver': workspace:*
       '@usul/entity': workspace:*
+      '@usul/store': workspace:*
       config: workspace:*
       eslint: 8.19.0
       next: 12.2.2
@@ -36,6 +37,7 @@ importers:
       '@usul/core': link:../../packages/core
       '@usul/driver': link:../../packages/driver
       '@usul/entity': link:../../packages/entity
+      '@usul/store': link:../../packages/store
       next: 12.2.2_react-dom@18.2.0+react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -102,6 +104,23 @@ importers:
       tsconfig: link:../tsconfig
       typescript: 4.7.4
 
+  packages/store:
+    specifiers:
+      '@usul/core': workspace:*
+      '@usul/driver': workspace:*
+      '@usul/entity': workspace:*
+      config: workspace:*
+      tsconfig: workspace:*
+      typescript: ^4.5.3
+    dependencies:
+      '@usul/core': link:../core
+      '@usul/driver': link:../driver
+      '@usul/entity': link:../entity
+    devDependencies:
+      config: link:../config
+      tsconfig: link:../tsconfig
+      typescript: 4.7.4
+
   packages/theme:
     specifiers:
       '@stitches/react': ^1.2.8
@@ -143,6 +162,25 @@ importers:
     devDependencies:
       '@types/react': 18.0.15
       '@types/react-dom': 18.0.6
+      config: link:../config
+      tsconfig: link:../tsconfig
+      typescript: 4.7.4
+
+  packages/universe:
+    specifiers:
+      '@usul/core': workspace:*
+      '@usul/driver': workspace:*
+      '@usul/entity': workspace:*
+      '@usul/store': workspace:*
+      config: workspace:*
+      tsconfig: workspace:*
+      typescript: ^4.5.3
+    dependencies:
+      '@usul/core': link:../core
+      '@usul/driver': link:../driver
+      '@usul/entity': link:../entity
+      '@usul/store': link:../store
+    devDependencies:
       config: link:../config
       tsconfig: link:../tsconfig
       typescript: 4.7.4

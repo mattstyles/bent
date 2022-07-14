@@ -12,6 +12,7 @@
     "@usul/core": "workspace:*",
     "@usul/driver": "workspace:*",
     "@usul/entity": "workspace:*",
+    "@usul/store": "workspace:*",
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",

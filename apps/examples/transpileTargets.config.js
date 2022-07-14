@@ -6,8 +6,8 @@ module.exports = [
   '@usul/core',
   '@usul/driver',
   '@usul/entity',
-  // '@usul/store',
-  // '@usul/universe',
+  '@usul/store',
+  '@usul/universe',
   // '@usul/client',
   // '@usul/make
 ]

@@ -1,23 +1,9 @@
-import type {ID} from '@usul/core'
-import {MemoryDriver} from '@usul/driver'
-import {Entity} from '@usul/entity'
-import {Container, Text, Screen, Button, Flex, Input, Stack} from 'ui'
-
 import {useEffect, useState, useCallback} from 'react'
 
-type DataType = {
-  _id: ID
-  name: string
-}
-class NameDriver extends MemoryDriver<DataType> {
-  name = 'NameDriver'
-}
-const nameDriver = new NameDriver()
-class NameBent extends Entity<DataType> {
-  driver = nameDriver
-}
+import {Container, Text, Screen, Button, Input, Stack} from 'ui'
+import {PersonBent} from 'common/ent'
 
-const instance = new NameBent({
+const instance = new PersonBent({
   _id: '123',
   name: 'Test Entity',
 })

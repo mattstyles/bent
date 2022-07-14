@@ -3,25 +3,46 @@ import type {IDriver} from '@usul/driver'
 
 export type GetEntityData<T extends Bent> = T['data']
 export type ClassOf<T extends Bent> = new (...args: Array<any>) => T
+// Can we type this such that we get constructor params for a bent?
 // export type ClassOf<T extends Bent> = ConstructorParameters<T>
 
+type Subscriber<T> = (bent: T) => void
+type Subscription = {
+  unsubscribe: () => void
+}
+
 export interface IEntity<T extends IEntityData> {
-  data: T
+  _data: T
 
   gen(): Promise<this>
   update(data: T): Promise<this>
+  subscribe(cb: Subscriber<this>): Subscription
 }
 
 export abstract class Bent<T extends IEntityData = any> implements IEntity<T> {
-  data: T
+  // How to make this private?
+  _data: T
   abstract driver: IDriver<T>
+  private subscriptions: Set<Subscriber<this>> = new Set()
 
   constructor(data: T) {
-    this.data = data
+    this._data = data
   }
 
   get id(): ID {
     return this.data._id
+  }
+
+  get data(): T {
+    return this._data
+  }
+
+  set data(data: T) {
+    console.log('setting ent data')
+    this._data = data
+    this.subscriptions.forEach((subscriber) => {
+      subscriber(this)
+    })
   }
 
   async gen(): Promise<this> {
@@ -34,5 +55,14 @@ export abstract class Bent<T extends IEntityData = any> implements IEntity<T> {
     await this.driver.set(merged)
     this.data = merged
     return this
+  }
+
+  subscribe(subscriber: Subscriber<this>): Subscription {
+    this.subscriptions.add(subscriber)
+    return {
+      unsubscribe: () => {
+        this.subscriptions.delete(subscriber)
+      },
+    }
   }
 }

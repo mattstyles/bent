@@ -13,9 +13,6 @@ export abstract class Universe<
 > {
   private stores: Map<Index<T>, S> = new Map()
 
-  // Move cache to client
-  // protected cache: Map<B['data']['_id'], Index<T>> = new Map()
-
   constructor(stores: T) {
     for (let name in stores) {
       this.stores.set(name, stores[name])
@@ -23,6 +20,7 @@ export abstract class Universe<
   }
 
   // Might need to ensure we don't run gen more than once on a shared driver
+  // Set won't do this as we're stuffing promises in there, we'll need to key on names and avoid running another gen if already done
   async gen(): Promise<this> {
     const gen = new Set<Promise<any>>()
     this.stores.forEach((store) => {
@@ -46,9 +44,6 @@ export abstract class Universe<
 
     return store as Store<K>
   }
-
-  // Move to client
-  // async get<K extends B>(id: string, Ent?: ClassOf<K>): Promise<K | null> {}
 
   async create<E extends B>(
     Bent: ClassOf<E>,

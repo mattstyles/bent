@@ -27,4 +27,5 @@ const links: Array<{href: string; title: string}> = [
   {href: '/basic', title: 'Basic'},
   {href: '/client', title: 'Client'},
   {href: '/subscription', title: 'Subscription'},
+  {href: '/indexeddb', title: 'Indexed DB'},
 ]

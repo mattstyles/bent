@@ -27,7 +27,6 @@ export default function Subscription() {
             setData(ent.data)
           })
           dispose = () => {
-            console.log('disposing subscription')
             subscription.unsubscribe()
           }
         })

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@usul/bent-react": "workspace:*",
     "@usul/core": "workspace:*",
     "@usul/client": "workspace:*",
     "@usul/driver": "workspace:*",

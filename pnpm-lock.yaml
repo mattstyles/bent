@@ -19,6 +19,7 @@ importers:
     specifiers:
       '@types/node': ^18.0.3
       '@types/react': 18.0.15
+      '@usul/bent-react': workspace:*
       '@usul/client': workspace:*
       '@usul/core': workspace:*
       '@usul/driver': workspace:*
@@ -36,6 +37,7 @@ importers:
       typescript: ^4.7.4
       ui: workspace:*
     dependencies:
+      '@usul/bent-react': link:../../packages/bent-react
       '@usul/client': link:../../packages/client
       '@usul/core': link:../../packages/core
       '@usul/driver': link:../../packages/driver
@@ -54,6 +56,27 @@ importers:
       eslint: 8.19.0
       next-transpile-modules: 9.0.0
       tsconfig: link:../../packages/tsconfig
+      typescript: 4.7.4
+
+  packages/bent-react:
+    specifiers:
+      '@types/react': '18'
+      '@usul/client': workspace:*
+      '@usul/core': workspace:*
+      '@usul/entity': workspace:*
+      config: workspace:*
+      react: '18'
+      tsconfig: workspace:*
+      typescript: ^4.5.3
+    dependencies:
+      '@usul/client': link:../client
+      '@usul/core': link:../core
+      '@usul/entity': link:../entity
+      react: 18.2.0
+    devDependencies:
+      '@types/react': 18.0.15
+      config: link:../config
+      tsconfig: link:../tsconfig
       typescript: 4.7.4
 
   packages/client:

@@ -28,4 +28,5 @@ const links: Array<{href: string; title: string}> = [
   {href: '/client', title: 'Client'},
   {href: '/subscription', title: 'Subscription'},
   {href: '/indexeddb', title: 'Indexed DB'},
+  {href: '/react', title: 'Bent React'},
 ]

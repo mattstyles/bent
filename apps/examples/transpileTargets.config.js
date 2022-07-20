@@ -9,5 +9,6 @@ module.exports = [
   '@usul/store',
   '@usul/universe',
   '@usul/client',
+  '@usul/bent-react',
   // '@usul/make
 ]

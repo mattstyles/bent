@@ -12,16 +12,14 @@ type Subscription = {
 }
 
 export interface IEntity<T extends IEntityData> {
-  _data: T
-
+  data: T
   gen(): Promise<this>
   update(data: T): Promise<this>
-  subscribe(cb: Subscriber<this>): Subscription
+  subscribe(subscriber: Subscriber<this>): Subscription
 }
 
 export abstract class Bent<T extends IEntityData = any> implements IEntity<T> {
-  // How to make this private?
-  _data: T
+  private _data: T
   abstract driver: IDriver<T>
   private subscriptions: Set<Subscriber<this>> = new Set()
 

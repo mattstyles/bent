@@ -25,6 +25,7 @@ export abstract class Client<
     const store = this.universe.getStoreByEntType(Ent)
     const ent = await store.get(id)
     if (ent != null) {
+      this.cache.set(ent.id, ent)
       return ent as K
     }
 

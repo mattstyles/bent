@@ -11,35 +11,7 @@ type UseBentOutput<T extends TypeofBent> = {
   data: GetEntityData<T> | null
 }
 
-// Non-suspense version
-// export function useBent<T extends TypeofBent>(id: ID, Bent: ClassOf<T>): UseBentOutput<T> {
-//   const [ent, setEnt] = useState<T | null>(null)
-//   const [data, setData] = useState<GetEntityData<T> | null>(null)
-//   const {client} = useBentClient()
-//   useEffect(() => {
-//     let dispose = () => {}
-//     client.get(id, Bent).then((ent: T | null) => {
-//       if (ent == null) {
-//         return dispose
-//       }
-//       setEnt(ent)
-//       setData(ent.data)
-//       const subscription = ent.subscribe((ent: T) => {
-//         setEnt(ent)
-//         setData(ent.data)
-//       })
-//       dispose = () => subscription.unsubscribe()
-//     })
-//     return dispose
-//   }, [id])
-//   return {
-//     ent,
-//     data,
-//   }
-// }
-
 const initialResource = new Resource((client, id, Bent) => {
-  // return Promise.all([delay(2000), client.get(id, Bent)])
   return client.get(id, Bent)
 })
 export function useBent<T extends TypeofBent>(
@@ -49,9 +21,7 @@ export function useBent<T extends TypeofBent>(
   const [resource, setResource] = useState(initialResource)
   useEffect(() => {
     setResource(
-      new Resource(async (client, id, Bent) => {
-        // Artificial delay to test suspense
-        await delay(2000)
+      new Resource((client, id, Bent) => {
         return client.get(id, Bent)
       })
     )
@@ -82,10 +52,4 @@ export function useBent<T extends TypeofBent>(
     ent,
     data,
   }
-}
-
-function delay(ms: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms)
-  })
 }

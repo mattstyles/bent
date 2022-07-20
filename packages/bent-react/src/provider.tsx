@@ -1,12 +1,11 @@
-import {ReactNode} from 'react'
+import {ReactNode, useState, useEffect} from 'react'
 
 import type {Client} from '@usul/client'
 
 import {Resource} from './resource'
 import {BentContext} from './context'
 
-const resource = new Resource((client) => {
-  // return Promise.all([delay(3000), client.connect()])
+const initialResource = new Resource((client) => {
   return client.connect()
 })
 
@@ -15,15 +14,15 @@ type BentProviderProps = {
   children: ReactNode
 }
 export function BentProvider({client, children}: BentProviderProps) {
-  resource.read(client)
+  // const [resource, setResource] = useState(initialResource)
+  // useEffect(() => {
+  //   console.log('using layout effect', client)
+  //   setResource(new Resource((client) => client.connect()))
+  // }, [client])
+  console.log('connecting', client)
+  initialResource.read(client)
 
   return (
     <BentContext.Provider value={{client}}>{children}</BentContext.Provider>
   )
-}
-
-function delay(ms: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms)
-  })
 }

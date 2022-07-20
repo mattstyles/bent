@@ -21,4 +21,3 @@ const config = {
 
 const plugins = chain(withTM)
 module.exports = plugins(config)
-

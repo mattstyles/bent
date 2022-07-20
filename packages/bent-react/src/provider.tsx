@@ -5,7 +5,7 @@ import type {Client} from '@usul/client'
 import {Resource} from './resource'
 import {BentContext} from './context'
 
-const initialResource = new Resource((client) => {
+const resource = new Resource((client) => {
   return client.connect()
 })
 
@@ -14,13 +14,8 @@ type BentProviderProps = {
   children: ReactNode
 }
 export function BentProvider({client, children}: BentProviderProps) {
-  // const [resource, setResource] = useState(initialResource)
-  // useEffect(() => {
-  //   console.log('using layout effect', client)
-  //   setResource(new Resource((client) => client.connect()))
-  // }, [client])
-  console.log('connecting', client)
-  initialResource.read(client)
+  // This will prohibit the client from ever changing
+  resource.read(client)
 
   return (
     <BentContext.Provider value={{client}}>{children}</BentContext.Provider>

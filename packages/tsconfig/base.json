@@ -5,6 +5,7 @@
     "composite": false,
     "declaration": false,
     "declarationMap": false,
+    "downlevelIteration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "inlineSources": false,
@@ -19,4 +20,3 @@
   },
   "exclude": ["node_modules"]
 }
-

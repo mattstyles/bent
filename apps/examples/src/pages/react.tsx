@@ -15,9 +15,9 @@ import {
 import {styled} from 'theme'
 import {AvatarBent, client} from 'common/indexedEnt'
 
-if (typeof window != 'undefined') {
-  window.client = client
-}
+// if (typeof window != 'undefined') {
+//   window.client = client
+// }
 
 export default function ReactExample() {
   return (
@@ -35,9 +35,10 @@ export default function ReactExample() {
             <Spacer direction='v' size='large' />
             <ClientOnly>
               <Stack gap='verylarge'>
+                {/**
                 <Suspense fallback={<ProfileFallback id={'hedylamarr'} />}>
                   <Profile id='hedylamarr' />
-                </Suspense>
+                </Suspense>*/}
                 <SwapID />
                 <Suspense fallback={<UpdaterFallback />}>
                   <UpdateBent />
@@ -130,7 +131,7 @@ function UpdateBent() {
     <Stack>
       <Text>
         Updating the properties of an ent should be reflected everywhere that
-        ent is displayed.
+        the ent is displayed.
       </Text>
       <Text>Check indexedDB too as values will be persisted.</Text>
       <Button

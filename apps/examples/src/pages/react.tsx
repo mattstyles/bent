@@ -35,10 +35,9 @@ export default function ReactExample() {
             <Spacer direction='v' size='large' />
             <ClientOnly>
               <Stack gap='verylarge'>
-                {/**
                 <Suspense fallback={<ProfileFallback id={'hedylamarr'} />}>
                   <Profile id='hedylamarr' />
-                </Suspense>*/}
+                </Suspense>
                 <SwapID />
                 <Suspense fallback={<UpdaterFallback />}>
                   <UpdateBent />

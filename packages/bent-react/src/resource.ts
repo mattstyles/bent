@@ -23,12 +23,10 @@ export class Resource<T> {
     const promise = this.fn(...args)
     promise
       .then((data: T) => {
-        console.log('resource resolved')
         this.status = ResourceStatus.done
         this.data = data
       })
       .catch((err) => {
-        console.log('resource errored')
         this.status = ResourceStatus.error
         this.error = err
       })
@@ -36,7 +34,6 @@ export class Resource<T> {
   }
 
   read(...args: any[]) {
-    console.log('Resource::read', this.status)
     switch (this.status) {
       case ResourceStatus.none:
         this.promise = this.run(...args)

@@ -19,6 +19,9 @@ export const Stack = styled('div', {
       large: {
         gridGap: '$5',
       },
+      verylarge: {
+        gridGap: '$8',
+      },
     },
     orientation: {
       h: {

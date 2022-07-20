@@ -38,7 +38,6 @@ export abstract class Bent<T extends IEntityData = any> implements IEntity<T> {
   }
 
   set data(data: T) {
-    console.log('setting ent data')
     this._data = data
     this.subscriptions.forEach((subscriber) => {
       subscriber(this)

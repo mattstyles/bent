@@ -16,6 +16,11 @@ export abstract class IndexedDBDriver<T extends IEntityData>
 
   async get(id: ID): Promise<T | null> {
     return new Promise((resolve, reject) => {
+      if (!isIndexedDBEnv()) {
+        resolve(null)
+        return
+      }
+
       if (this.db == null) {
         throw new Error('IndexedDBDriver not connected')
       }
@@ -39,6 +44,11 @@ export abstract class IndexedDBDriver<T extends IEntityData>
 
   async set(data: T): Promise<void> {
     return new Promise((resolve, reject) => {
+      if (!isIndexedDBEnv()) {
+        resolve()
+        return
+      }
+
       if (this.db == null) {
         throw new Error('IndexedDBDriver not connected')
       }
@@ -63,10 +73,7 @@ export abstract class IndexedDBDriver<T extends IEntityData>
   abstract onUpgrade(db: IDBDatabase): Promise<void>
 
   private async connect(): Promise<IDBDatabase | null> {
-    if (
-      typeof window === 'undefined' ||
-      typeof window.indexedDB === 'undefined'
-    ) {
+    if (!isIndexedDBEnv()) {
       return null
     }
 
@@ -88,4 +95,10 @@ export abstract class IndexedDBDriver<T extends IEntityData>
       }
     })
   }
+}
+
+function isIndexedDBEnv(): boolean {
+  return !(
+    typeof window === 'undefined' || typeof window.indexedDB === 'undefined'
+  )
 }

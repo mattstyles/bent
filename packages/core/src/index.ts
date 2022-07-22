@@ -1,5 +1,5 @@
 export type ID = string
 
-export interface IEntityData {
+export interface IEntModel {
   _id: ID
 }

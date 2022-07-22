@@ -1,4 +1,4 @@
-import type {ID, IEntityData} from '@usul/core'
+import type {ID, IEntModel} from '@usul/core'
 import type {IDriver} from '@usul/driver'
 
 export type GetEntityData<T extends Bent> = T['data']
@@ -11,14 +11,14 @@ type Subscription = {
   unsubscribe: () => void
 }
 
-export interface IEntity<T extends IEntityData> {
+export interface IEntity<T extends IEntModel> {
   data: T
   gen(): Promise<this>
   update(data: T): Promise<this>
   subscribe(subscriber: Subscriber<this>): Subscription
 }
 
-export abstract class Bent<T extends IEntityData = any> implements IEntity<T> {
+export abstract class Bent<T extends IEntModel = any> implements IEntity<T> {
   private _data: T
   abstract driver: IDriver<T>
   private subscriptions: Set<Subscriber<this>> = new Set()
@@ -31,8 +31,9 @@ export abstract class Bent<T extends IEntityData = any> implements IEntity<T> {
     return this.data._id
   }
 
+  // Returns a copy to ensure mutations must flow through the setter
   get data(): T {
-    return this._data
+    return {...this._data}
   }
 
   set data(data: T) {

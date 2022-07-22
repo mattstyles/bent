@@ -1,4 +1,4 @@
-import type {IEntityData} from '@usul/core'
+import type {IEntModel} from '@usul/core'
 import {Bent} from '@usul/entity'
 import {MemoryDriver} from '@usul/driver'
 import {Store} from '@usul/store'
@@ -6,18 +6,18 @@ import {Universe} from '@usul/universe'
 import {Client} from '@usul/client'
 
 // Data type handled by ent
-export interface PersonData extends IEntityData {
+export interface PersonModel extends IEntModel {
   name: string
 }
 
 // Data driver for storing/retrieving ent data
-export class PersonDriver extends MemoryDriver<PersonData> {
+export class PersonDriver extends MemoryDriver<PersonModel> {
   name = 'PersonDriver'
 }
 export const personDriver = new PersonDriver()
 
 // The ent class
-export class PersonBent extends Bent<PersonData> {
+export class PersonBent extends Bent<PersonModel> {
   driver = personDriver
 }
 

@@ -1,4 +1,4 @@
-import type {IEntityData} from '@usul/core'
+import type {IEntModel} from '@usul/core'
 import {Bent} from '@usul/entity'
 import {IndexedDBDriver} from '@usul/driver'
 import {Store} from '@usul/store'
@@ -6,13 +6,13 @@ import {Universe} from '@usul/universe'
 import {Client} from '@usul/client'
 
 // Data type handled by ent
-export interface AvatarData extends IEntityData {
+export interface AvatarModel extends IEntModel {
   name: string
   image: string
 }
 
 // Data driver for storing/retrieving ent data
-export class AvatarDriver extends IndexedDBDriver<AvatarData> {
+export class AvatarDriver extends IndexedDBDriver<AvatarModel> {
   name = 'AvatarDriver'
   dbName = 'indexedDBexample'
   version = 1
@@ -49,7 +49,7 @@ export class AvatarDriver extends IndexedDBDriver<AvatarData> {
 export const avatarDriver = new AvatarDriver()
 
 // The ent class
-export class AvatarBent extends Bent<AvatarData> {
+export class AvatarBent extends Bent<AvatarModel> {
   driver = avatarDriver
 }
 
